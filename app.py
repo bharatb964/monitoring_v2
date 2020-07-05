@@ -39,9 +39,8 @@ def update_alert(dff,interval,threshold):
 
 def log_alert(dff,interval,threshold):
     global l
-    if dff.iloc[interval]['Proba']>threshold:
-        l=str(list(range(0,interval)))
-    return l
+    kk=dff[dff['Proba']>threshold].index .tolist()
+    return str(list(filter(lambda x: x <interval, kk)))
 
 GRAPH_INTERVAL = os.environ.get("GRAPH_INTERVAL", 3000)
 
