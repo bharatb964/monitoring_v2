@@ -1,4 +1,3 @@
-
 import os
 import pathlib
 import numpy as np
@@ -39,8 +38,10 @@ def update_alert(dff,interval,threshold):
         return "** ALERT **"
 
 def log_alert(dff,interval,threshold):
+    global l
     if dff.iloc[interval]['Proba']>threshold:
-        return str(list(range(0,interval)))
+        l=str(list(range(0,interval)))
+    return l
 
 GRAPH_INTERVAL = os.environ.get("GRAPH_INTERVAL", 3000)
 
