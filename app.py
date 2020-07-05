@@ -36,13 +36,13 @@ def plot_fig(dff,interval,col):
 
 # Function to print out the ALERT on the app
 def update_alert(dff,interval,threshold):
-    if dff.iloc[interval]['Proba']>threshold:
+    if dff.iloc[interval]['s21']>threshold:
         return "** ALERT **"
 
 # Function for logging the id of the alert
 def log_alert(dff,interval,threshold):
     global l
-    kk=dff[dff['Proba']>threshold].index .tolist()
+    kk=dff[dff['s21']>threshold].index .tolist()
     return str(list(filter(lambda x: x <interval, kk)))
 
 GRAPH_INTERVAL = os.environ.get("GRAPH_INTERVAL", 3000)
@@ -121,7 +121,7 @@ app.layout = html.Div(
                                 html.Br(),
                                 html.Div('ALERT WILL BE LOGGED HERE', style={'color': 'white', 'fontSize': 14}),
                                 html.Br(),
-                                html.Div(' ', style={'color': 'white', 'fontSize': 14},id='alert_log'),
+                                html.Div('---', style={'color': 'white', 'fontSize': 14},id='alert_log'),
                             ],
                             className="graph__container first",
                         ),
